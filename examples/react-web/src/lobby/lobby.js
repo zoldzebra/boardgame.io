@@ -18,7 +18,8 @@ GameTicTacToe.minPlayers = 1;
 GameTicTacToe.maxPlayers = 2;
 GameChess.minPlayers = GameChess.maxPlayers = 2;
 
-const hostname = window.location.hostname;
+const { protocol, hostname, port } = window.location;
+const server = `${protocol}//${hostname}:${port}`;
 const importedGames = [
   { game: GameTicTacToe, board: BoardTicTacToe },
   { game: GameChess, board: BoardChess },
@@ -29,8 +30,8 @@ const LobbyView = () => (
     <h1>Lobby</h1>
 
     <Lobby
-      gameServer={`http://${hostname}:8000`}
-      lobbyServer={`http://${hostname}:8000`}
+      gameServer={server}
+      lobbyServer={server}
       gameComponents={importedGames}
     />
   </div>
